@@ -1,0 +1,102 @@
+<html>
+<head>
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <div class="top-nav-bar">
+        <div class="search-box">
+            <i class="fa fa-bars" id="menu_btn" onclick="openmenu()"></i>
+            <i class="fa fa-times" id="close_btn" onclick="closemenu()"></i>
+            <a href="/home"><img src="./assets/ebay.png" class="logo"></a>
+            <input type="text" class="form-control">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="menu-bar">
+            <ul>
+                <li class="cart"><a href="/cart"><i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;cart&nbsp;&nbsp;</a></li>
+                <li><a href="/history">history</a></li>
+                <li *ngIf = "userid==null || userid==undefined"><a href="/register">Sign Up</a></li>
+                <li *ngIf = "userid==null || userid==undefined"><a href="/login">Log In</a></li>
+                <li *ngIf = "userid!=null || userid!=undefined"><a href="/profile">Update profile</a></li>
+                <li *ngIf = "userid!=null || userid!=undefined"><a href="/home" (click)="signout()">Log out</a></li>
+            </ul>
+        </div>
+    </div> 
+    
+        <table class="product_container_cart">
+            <div class="product_container_cart">
+                <tr>
+                    <th style="min-width:250px">&nbsp;TITLE</th>
+                    <th style="min-width:75px">&nbsp;PRICE</th>
+                    <th style="min-width:100px">&nbsp;QUANTITY</th>
+                    <th style="min-width:75px">&nbsp;TOTAL</th>
+                </tr>
+            </div>
+            
+            <div class="product_container_cart">
+                <div *ngFor = "let item of orders">
+                    <div *ngFor = "let product of products">
+                        <tr *ngIf="product.productid==item.productid">
+                            <td style="min-width:250px">&nbsp;
+                                <img src="./assets/{{ product.imgsrc }}.jpg" height="65">{{ product.name }}
+                            </td>
+                            <td style="min-width:75px">&nbsp;{{ product.price }}</td>
+                            <td style="min-width:100px">&nbsp;{{ item.quantity }}</td>
+                            <td style="min-width:75px">&nbsp;${{ product.price * item.quantity }}</td>
+                            <!-- <p style="display: none;">{{ totalquantity = totalquantity + 1}}</p> -->
+                        </tr>
+                    </div>
+                </div>
+            </div>
+            <!-- {{ findtotal() }}
+            <div class="product_container_cart">
+                <tr>
+                    <td style="min-width:250px"></td>
+                    <td style="min-width:75px"></td>
+                    <td style="min-width:100px"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{totalquantity}}</b></td>
+                    <td style="min-width:75px"><b>&nbsp;${{totalprice}}</b></td>
+                </tr>
+            </div> -->
+
+        </table>
+    <!--
+    <div class="product_container_cart">
+        <div class="product_header">
+            <h5 class="product_title">TiTLE</h5>
+            <h5 class="price">PRICE</h5>
+            <h5 class="quantity">QUANTITY</h5>
+            <h5 class="total">TOTAL</h5>
+        </div>
+        <div *ngFor = "let item of cart">
+            <div *ngFor = "let product of products">
+                <div class="product_display" *ngIf="product.productid==item.productid">
+                    <a (click)="deleteitem(item.productid)">
+                        <i class="fa fa-times-circle"></i>
+                    </a>
+                    <img src="./assets/{{ product.imgsrc }}.jpg" width="50">{{ product.name }}
+                    <div class="price">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ product.price }}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a (click)="decreseitem(item.productid, item.quantity)"><i class="fa fa-arrow-circle-left"></i></a>&nbsp; {{ item.quantity }} &nbsp;<a (click)="increaseitem(item.productid, item.quantity)"><i class="fa fa-arrow-circle-right"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ {{ product.price * item.quantity }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="product_container_button">
+        <button type='button' class='btn btn-info' (click)='removehistory()'>Remove history</button>
+    </div>
+
+</body>
+</html>
+

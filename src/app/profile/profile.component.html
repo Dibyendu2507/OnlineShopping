@@ -1,0 +1,95 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div style="text-align: center">
+    <h1></h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="centered">
+            <form name="form" [formGroup]="form">
+                <fieldset>
+                    <legend class="text-center">Valid information is required to update. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Name:  </label>
+                        <input type="text" [(ngModel)]="user.name" class="form-control" formControlName="name" placeholder="Enter your fullname..." />
+                        <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="invalid-feedback">
+                            <div>Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email"><span class="req">* </span> Email: </label>
+                        <input type="text" [(ngModel)]="user.mail" class="form-control" formControlName="mail" placeholder="Enter valid email address" />
+                        <div *ngIf="form.get('mail')!.touched && form.get('mail')!.invalid" class="invalid-feedback">
+                            <div>Valid Email is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Username"><span class="req">* </span> Username: </label>
+                        <input type="text" [(ngModel)]="user.username" class="form-control" formControlName="username" placeholder="Enter your username" />
+                        <div *ngIf="form.get('username')!.touched && form.get('username')!.invalid" class="invalid-feedback">
+                            <div>Username is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password"><span class="req">* </span> Password: </label>
+                        <input type="password" [(ngModel)]="user.password" class="form-control" formControlName="password" placeholder="Enter your password" />
+                        <div *ngIf="form.get('password')!.touched && form.get('password')!.invalid" class="invalid-feedback">
+                            <div>Password is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact"> Contact: </label>
+                        <input type="text" [(ngModel)]="user.contact" class="form-control" formControlName="contact" placeholder="Enter your contact number" />
+                        <div *ngIf="form.get('contact')!.invalid" class="invalid-feedback">
+                            <div>Contact number must have 10 digits</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob"> Date of Birth: </label>
+                        <input type="date" [(ngModel)]="user.dob" class="form-control" formControlName="dob" placeholder="Enter your date of birth" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street"> Street: </label>
+                        <input type="text" [(ngModel)]="user.address.street" class="form-control" formControlName="street" placeholder="Enter your street" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city"> City: </label>
+                        <input type="text" [(ngModel)]="user.address.city" class="form-control" formControlName="city" placeholder="Enter your city" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state"> State: </label>
+                        <input type="text" [(ngModel)]="user.address.state" class="form-control" formControlName="state" placeholder="Enter your state" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pincode"> PIN Code: </label>
+                        <input type="number" [(ngModel)]="user.address.pincode" class="form-control" formControlName="pincode" placeholder="Enter your PIN code" />
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success"  (click)="updateProfile()">Submit</button>
+                    </div>
+                    </div>
+                    <h3 class="invalid-feedback" id="invalid"></h3>
+                    <h3 class="invalid-feedback" id="invalid">{{resp}}</h3>
+                </fieldset>
+               
+            </form>
+          
+        </div>
+    </div>
+</div>

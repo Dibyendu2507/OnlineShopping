@@ -1,0 +1,96 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div style="text-align: center">
+    <h1></h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="centered">
+            <form name="form" [formGroup]="form">
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="productid"><span class="req">* </span> Product Id:  </label>
+                        <input type="number" class="form-control" formControlName="productid" placeholder="Enter product id" />
+                        <div *ngIf="form.get('productid')!.touched && form.get('productid')!.invalid" class="invalid-feedback">
+                            <div>Product id is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name"><span class="req">* </span> Product Name:  </label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Product name" />
+                        <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="invalid-feedback">
+                            <div>Product name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productcategory"><span class="req">* </span> Product Category: </label>
+                        <select class="form-control" formControlName="productcategory" placeholder="Enter Product category" >
+                            <option>jeans</option>
+                            <option>shirt</option>
+                        </select>
+                        <div *ngIf="form.get('productcategory')!.touched && form.get('productcategory')!.invalid" class="invalid-feedback">
+                            <div>Product category is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imgsrc"><span class="req">* </span> Image Source: </label>
+                        <input type="text" class="form-control" formControlName="imgsrc" placeholder="Enter Image Source" />
+                        <div *ngIf="form.get('imgsrc')!.touched && form.get('imgsrc')!.invalid" class="invalid-feedback">
+                            <div>Image source is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating"><span class="req">* </span> Rating: </label>
+                        <input type="number" class="form-control" formControlName="rating" placeholder="Enter raing" />
+                        <div *ngIf="form.get('rating')!.touched && form.get('rating')!.invalid" class="invalid-feedback">
+                            <div>Rating is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price"><span class="req">* </span> Price: </label>
+                        <input type="number" class="form-control" formControlName="price" placeholder="Enter price" />
+                        <div *ngIf="form.get('price')!.touched && form.get('price')!.invalid" class="invalid-feedback">
+                            <div>Price is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender"><span class="req">* </span> Gender: </label>
+                        <select class="form-control" formControlName="gender" placeholder="Enter Gender" >
+                            <option>male</option>
+                            <option>female</option>
+                        </select>
+                        <div *ngIf="form.get('gender')!.touched && form.get('gender')!.invalid" class="invalid-feedback">
+                            <div>Gender is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="details"><span class="req">* </span> Details: </label>
+                        <textarea  type="text" class="form-control" formControlName="details" placeholder="Enter details" ></textarea>
+                        <div *ngIf="form.get('details')!.touched && form.get('details')!.invalid" class="invalid-feedback">
+                            <div>Details is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success" [disabled]="!form.valid"  (click)="saveproduct()">Submit</button>
+                    </div>
+                </fieldset>
+               
+            </form>
+          
+        </div>
+    </div>
+</div>

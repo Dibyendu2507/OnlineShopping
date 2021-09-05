@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title> Product page </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+    
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+    
+<div class="top-nav-bar">
+    <div class="search-box">
+        <i class="fa fa-bars" id="menu_btn" onclick="openmenu()"></i>
+        <i class="fa fa-times" id="close_btn" onclick="closemenu()"></i>
+        <a href="/home"><img src="./assets/ebay.png" class="logo"></a>
+        <input type="text" class="form-control">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+    </div>
+    <div class="menu-bar">
+        <ul>
+            <li class="cart"><a href="/cart"><i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;cart&nbsp;&nbsp;<span></span></a></li>
+            <li><a href="/history">history</a></li>
+            <li *ngIf = "userid==null || userid==undefined"><a href="/register">Sign Up</a></li>
+            <li *ngIf = "userid==null || userid==undefined"><a href="/login">Log In</a></li>
+            <li *ngIf = "userid!=null || userid!=undefined"><a href="/profile">Update profile</a></li>
+            <li *ngIf = "userid!=null || userid!=undefined"><a href="/home" (click)="signout()">Log out</a></li>
+        </ul>
+    </div>
+</div> 
+
+
+
+<!-------------------------------Single product--------------------------->
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="image">
+                    <img id="Img" src="./assets/{{ products.imgsrc }}.jpg" height="600">
+                    <button class="add_cart cart1" (click)="addProduct(products.productid)">
+                        <i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;Add to Cart
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <p class="new_arrival text-center">NEW</p>
+                <h1 id="title">{{ products.name }}</h1>
+                <p>Product Id : {{ products.productid }}</p>
+                <br>
+                <!-- <h4 style="color: green;"><i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i></h4> -->
+                <h4 style="display: inline-block;color: green;" *ngFor='let in of counter(products.rating)'><i class="fa fa-star" style="font-size:20px"></i></h4>
+                <br>
+
+                <p class="price_product" id="price">USD ${{products.price}}.00</p><br>
+                <p><b>Availability:</b> In stock</p><br>
+                <p><b>Condition:</b> New</p><br>
+                <p><b>Brand:</b> XYZ company</p><br>
+                <p><b>Description:</b><br>
+                {{products.details}}</p>
+
+            </div>
+        </div>
+    </div>
+
+
+<!-------------------------------Footer--------------------------->
+
+<section class="footer">
+    <div class="container tex-center">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>Useful Links</h1>
+                <p>Privacy policy</p>
+                <p>Terms of use</p>
+                <p>Return policy</p>
+                <p>Discount Coupons</p>
+            </div>
+            <div class="col-md-3">
+                <h1>Company</h1>
+                <p>About Us</p>
+                <p>Contact Us</p>
+                <p>Career</p>
+                <p>Affiliate</p>
+            </div>
+            <div class="col-md-3">
+                <h1>Follow us on</h1>
+                <p><i class="fa fa-facebook-official"></i>Facebook</p>
+                <p><i class="fa fa-youtube-play"></i>Instagram</p>
+                <p><i class="fa fa-linkedin"></i>LinkedIn</p>
+                <p><i class="fa fa-twitter"></i>Twitter</p>
+            </div>
+            <div class="col-md-3 footer-image">
+                <h1>Download App</h1>
+                <img src="./assets/app.jpg" width="200">
+            </div>
+        </div>
+        <hr>
+        <p class = "copyright"> Made by <i class="fa fa-heart-o"></i> Beehyv</p>
+    </div>
+</section>
+
+
+
+</body>
+</html>

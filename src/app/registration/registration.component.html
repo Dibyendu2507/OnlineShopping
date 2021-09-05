@@ -1,0 +1,204 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div style="text-align: center">
+    <h1></h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="centered">
+            <form name="form" [formGroup]="form">
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Name:  </label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':
+                        form.get('name')!.touched && form.get('name')!.invalid}" placeholder="Enter your fullname..." />
+                        <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="invalid-feedback">
+                            <div>Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email"><span class="req">* </span> Email: </label>
+                        <input type="text" class="form-control" formControlName="mail" [ngClass]="{'is-invalid':
+                        form.get('mail')!.touched && form.get('mail')!.invalid}" placeholder="Enter valid email address" />
+                        <div *ngIf="form.get('mail')!.touched && form.get('mail')!.invalid" class="invalid-feedback">
+                            <div>Valid Email is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Username"><span class="req">* </span> Username: </label>
+                        <input type="text" class="form-control" formControlName="username" [ngClass]="{'is-invalid':
+                        form.get('username')!.touched && form.get('username')!.invalid}" placeholder="Enter your username" />
+                        <div *ngIf="form.get('username')!.touched && form.get('username')!.invalid" class="invalid-feedback">
+                            <div>Username is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password"><span class="req">* </span> Password: </label>
+                        <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':
+                        form.get('password')!.touched && form.get('password')!.invalid}" placeholder="Enter your password" />
+                        <div *ngIf="form.get('password')!.touched && form.get('password')!.invalid" class="invalid-feedback">
+                            <div>Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" [disabled]="!form.valid"  (click)="registerNow()">Submit</button>
+                    </div>
+                    <p class="para">Already have an account? <a href="\login">Log in</a></p> 
+                    <h3 class="invalid-feedback" id="invalid">{{resp}}</h3>
+                </fieldset>
+               
+            </form>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form name="form" [formGroup]="form">
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Name:  </label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':
+                        form.get('name')!.touched && form.get('name')!.invalid}" placeholder="Enter your fullname..." />
+                        <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="invalid-feedback">
+                            <div>Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Contact"><span class="req">* </span> Contact: </label>
+                        <input type="number" class="form-control" formControlName="contact" [ngClass]="{'is-invalid':
+                        form.get('contact')!.touched && form.get('contact')!.invalid}" placeholder="Enter your contact number" />
+                        <div *ngIf="form.get('contact')!.touched && form.get('contact')!.invalid" class="invalid-feedback">
+                            <div *ngIf="form.get('contact')!.errors.required">Contact number is required</div>
+                            <div *ngIf="form.get('contact')!.errors.maxlength">Contact number must have 10 digits</div>
+                            <div *ngIf="form.get('contact')!.errors.minlength">Contact number must have 10 digits</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email"><span class="req">* </span> Email: </label>
+                        <input type="text" class="form-control" formControlName="mail" [ngClass]="{'is-invalid':
+                        form.get('mail')!.touched && form.get('mail')!.invalid}" placeholder="Enter valid email address" />
+                        <div *ngIf="form.get('mail')!.touched && form.get('mail')!.invalid" class="invalid-feedback">
+                            <div *ngIf="form.get('mail')!.errors.required">Email is required</div>
+                            <div *ngIf="form.get('mail')!.errors.email">Email must be a valid mail address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Dob"><span class="req">* </span> Dob: </label>
+                        <input type="date" class="form-control" formControlName="dob" [ngClass]="{'is-invalid':
+                        form.get('dob')!.touched && form.get('dob')!.invalid}" placeholder="Enter Date of Birth" />
+                        <div *ngIf="form.get('dob')!.touched && form.get('dob')!.invalid" class="invalid-feedback">
+                            <div>Date of birth is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Username"><span class="req">* </span> Username : </label>
+                        <input type="text" class="form-control" formControlName="username" [ngClass]="{'is-invalid':
+                        form.get('username')!.touched && form.get('username')!.invalid}" placeholder="Enter your username"/>
+                        <div *ngIf="form.get('username')!.touched && form.get('username')!.invalid" class="invalid-feedback">
+                            <div>Username is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password"><span class="req">* </span> Password: </label>
+                        <input type="text" class="form-control" formControlName="password" [ngClass]="{'is-invalid':
+                        form.get('password')!.touched && form.get('password')!.invalid}" placeholder="Enter your password" />
+                        <div *ngIf="form.get('password')!.touched && form.get('password')!.invalid" class="invalid-feedback">
+                            <div>Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" [disabled]="!form.valid"  (click)="registerNow()">Submit</button>
+                    </div>
+                </fieldset>
+               
+            </form>
+          
+        </div>
+
+    </div>
+</div> -->
+ 
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Name:  </label>
+                        <input required type="text" [(ngModel)]="name" name="name" id="name"
+                            class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Contact"><span class="req">* </span> Contact: </label>
+                        <input class="form-control" type="number" [(ngModel)]="contact" name="contact" id="contact" required
+                            placeholder="Enter your contact number" />
+                        <div id="errFirst"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname"><span class="req">* </span> Email: </label>
+                        <input class="form-control" type="email" [(ngModel)]="mail" name="email" id="txt" required
+                            placeholder="Enter valid email address" />
+                        <div id="errFirst"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="firstname"><span class="req">* </span> Dob: </label>
+                        <input class="form-control" type="date" [(ngModel)]="dob" name="dob" id="dob" required
+                            placeholder="Enter Date of Birth" />
+                        <div id="errFirst"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Username"><span class="req">* </span> Username : </label>
+                        <input class="form-control" type="text" [(ngModel)]="username" name="username" id="username"
+                            placeholder="Enter your username" required />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password"><span class="req">* </span> Password: </label>
+                        <input class="form-control" required type="password" [(ngModel)]="password" name="password"
+                            id="password" placeholder="Enter your password" />
+                        <div class="status" id="status"></div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerNow()">
+                    </div>
+                </fieldset>
+               
+            </form>
+          
+        </div>
+
+    </div>
+</div> -->

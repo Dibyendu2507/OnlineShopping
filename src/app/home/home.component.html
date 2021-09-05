@@ -1,0 +1,334 @@
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+    
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+
+    
+<div class="top-nav-bar">
+    <div class="search-box">
+        <a href="/home"><img src="./assets/ebay.png" class="logo"></a>
+        <input type="text" [(ngModel)]="searchstring" class="form-control">
+        <div class="input-group-text" (click)='Search(searchstring)'><i class="fa fa-search"></i></div>
+    </div>
+    <div class="menu-bar">
+        <ul>
+            <li class="cart"><a href="/cart"><i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;cart&nbsp;&nbsp;<span></span></a></li>
+            <li><a href="/history">history</a></li>
+            <li *ngIf = "userid==null || userid==undefined"><a href="/register">Sign Up</a></li>
+            <li *ngIf = "userid==null || userid==undefined"><a href="/login">Log In</a></li>
+            <li *ngIf = "userid!=null || userid!=undefined"><a href="/profile">Update profile</a></li>
+            <li *ngIf = "userid!=null || userid!=undefined"><a href="/home" (click)="signout()">Log out</a></li>
+        </ul>
+    </div>
+    <div class="filter">
+        <!-- <p class="padding" style = "display: inline-block;">
+            <input type="checkbox" [(ngModel)]="isCheckedAll" (change)="checkValueAll(isCheckedAll? true : false )"/>
+            <label for="">&nbsp;All</label>
+        </p> -->
+        <p class="padding" style = "display: inline-block;">
+            <input type="checkbox" [(ngModel)]="isCheckedGents" (change)="checkValueGents(isCheckedGents? true : false )"/>
+            <label for="">&nbsp;Gents</label>
+        </p>
+        <p class="padding" style = "display: inline-block;">
+            <input type="checkbox" [(ngModel)]="isCheckedLadies" (change)="checkValueLadies(isCheckedLadies? true : false )"/>
+            <label for="">&nbsp;Ladies</label>
+        </p>
+        <p class="padding" style = "display: inline-block;">
+            <input type="checkbox" [(ngModel)]="isCheckedJeans" (change)="checkValueJeans(isCheckedJeans? true : false )"/>
+            <label for="">&nbsp;Jeans</label>
+        </p>
+        <p class="padding" style = "display: inline-block;">
+            <input type="checkbox" [(ngModel)]="isCheckedShirt" (change)="checkValueShirt(isCheckedShirt? true : false )"/>
+            <label for="">&nbsp;Shirts</label>
+        </p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div style = "display: inline-block; text-align: right; ">Minimum Price : <input type="number" [(ngModel)]="minprice" size="4"></div>&nbsp;&nbsp;
+        <div style = "display: inline-block; text-align: right; ">Maximum Price : <input type="number" [(ngModel)]="maxprice" size="4"></div>&nbsp;&nbsp;
+        <div style = "display: inline-block; text-align: right; ">
+            <button class="btn btn-success" (click)="searchByPrice()">Submit</button>
+        </div>
+    </div>
+    
+</div> 
+
+
+<!-- <div class="w3-bar w3-blue">
+    <a class="w3-bar-item w3-button filters"><h1><b>Filters -></b></h1></a>
+    <a class="w3-bar-item w3-button" (click)='All()'><h2><b>All Products</b></h2></a>
+    <a class="w3-bar-item w3-button" (click)='Gents()'><h2><b>Gents Section</b></h2></a>
+    <a class="w3-bar-item w3-button" (click)='Ladies()'><h2><b>Ladies Section</b></h2></a>
+    <a class="w3-bar-item w3-button" (click)='Jeans()'><h2><b>All Jeans</b></h2></a>
+    <a class="w3-bar-item w3-button" (click)='Shirts()'><h2><b>All Tshirts</b></h2></a>
+</div> -->
+<div>{{searchstring}}</div>
+
+<div id="welcome" class="welcome"></div>
+
+<section class="header">
+    <!-- <div class="side_menu" id="side_menu">
+        <ul>
+            <li>On Sale<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+            <hr class="line">
+            <li>Mobiles<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+            <hr class="line">
+            <li>Electronics<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+            <hr class="line">
+            <li>Hardwares<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+            <hr class="line">
+            <li>Clothes<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+            <hr class="line">
+            <li>Grocery<i class="fa fa-angle-right"></i>
+                <ul>
+                    <li>Sub Menu-1</li><hr class="line">
+                    <li>Sub Menu-2</li><hr class="line">
+                    <li>Sub Menu-3</li><hr class="line">
+                    <li>Sub Menu-4</li>
+                </ul>
+            </li>
+        </ul>
+    </div> -->
+    <div class="slider">
+        <div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./assets/carousel1.jpg" class="d-block w-100" alt="..." width = "700px">
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/carousel2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/carousel3.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/carousel4.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <ol class="carousel-indicators">
+                <li data-target="#slider" data-slide-to="0" class="active"></li>
+                <li data-target="#slider" data-slide-to="1"></li>
+                <li data-target="#slider" data-slide-to="2"></li>
+                <li data-target="#slider" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-------------------------------featured columns--------------------------->
+
+<section class="featured_categories">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="./assets/feature1.jpg" width="100">
+            </div>
+            <div class="col-md-4">
+                <img src="./assets/feature2.jpg" width="100">
+            </div>
+            <div class="col-md-4">
+                <img src="./assets/feature3.png" width="100">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-------------------------------------Jeans-------------------------------------------->
+
+<section class="on_sale">
+    <div class="container">
+
+        <div class="title_box" *ngIf="category != 'shirt'">
+            <h2>Jeans</h2>
+        </div>
+        
+
+<!-------------------------------Gents Pants--------------------------->
+
+                <div class="row" id="jeans">
+                    <div class="col-md-3"  *ngFor = "let product of products">
+                        <div *ngIf="product.productcategory=='jeans'">
+                            <div class="image">
+                                <a class="product_page" href="/product" (click)="productpage(product.productid)">
+                                    <img src="./assets/{{ product.imgsrc }}.jpg" height="350">
+                                </a>
+                                <button class="add_cart cart1" (click)="addProduct(product.productid)">
+                                    <i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;Add to Cart
+                                </button>
+                            </div>
+                            <div class="product_bottom text-canter" *ngIf="product.productcategory=='jeans'">
+                                <div style="display: inline-block" *ngFor='let in of counter(product.rating)'><i class="fa fa-star" style="font-size:20px"></i></div>
+                                <h3>{{ product.name }}</h3><h4><b>${{ product.price }}.00</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div *ngFor = "let product of products">
+                    <h1>{{ product.id }}</h1>
+                    <h1>{{ product.name }}</h1>
+                </div> -->
+
+<!-------------------------------Ladies Pants--------------------------->        
+        
+    </div>
+</section>
+
+<!--------------------------------------------Shirts--------------------------------------------------->
+
+
+<section class="new_products">
+    <div class="container">
+
+        <div class="title_box" *ngIf="category != 'jeans'">
+            <h2>TShirts</h2>
+        </div>
+
+
+<!-------------------------------Gents Shirt--------------------------->
+
+                <div class="row" id="shirt">
+                    <div class="col-md-3" *ngFor = "let product of products">
+                        <div *ngIf="product.productcategory=='shirt'">
+                            <div class="image">
+                                <a class="product_page" href="/product" (click)="productpage(product.productid)">
+                                    <img src="./assets/{{ product.imgsrc }}.jpg" height="350" >
+                                </a>
+                                <button class="add_cart cart1" (click)="addProduct(product.productid)">
+                                    <i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;Add to Cart
+                                </button>
+                            </div>
+                            <div class="product_bottom text-canter" *ngIf="product.productcategory=='shirt'">
+                                <div style="display: inline-block" *ngFor='let in of counter(product.rating)'><i class="fa fa-star" style="font-size:20px"></i></div>
+                                <h3>{{ product.name }}</h3><h4><b>${{ product.price }}.00</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br><br><br>
+                </div>
+                
+
+<!-------------------------------Ladies Shirt--------------------------->
+
+
+    </div>
+</section>
+
+<!-------------------------------Website features--------------------------->
+
+<section class="website_features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 feature_box">
+                <img src="./assets/1.jpg" height="100">
+                <div class="feature_text">
+                    <p><b>100% opiginal items</b> are available at company</p>
+                </div>
+            </div>
+            <div class="col-md-3 feature_box">
+                <img src="./assets/2.png" height="100">
+                <div class="feature_text">
+                    <p><b>Get free delivary for</b> every order more than price</p>
+                </div>
+            </div>
+            <div class="col-md-3 feature_box">
+                <img src="./assets/3.jpg" height="100">
+                <div class="feature_text">
+                    <p><b>Return within 30 days</b> of recieving your order</p>
+                </div>
+            </div>
+            <div class="col-md-3 feature_box">
+                <img src="./assets/4.png" height="100">
+                <div class="feature_text">
+                    <p><b>Pay online through any medium</b> (card, net banking)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-------------------------------Footer--------------------------->
+
+<section class="footer">
+    <div class="container tex-center">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>Useful Links</h1>
+                <p>Privacy policy</p>
+                <p>Terms of use</p>
+                <p>Return policy</p>
+                <p>Discount Coupons</p>
+            </div>
+            <div class="col-md-3">
+                <h1>Company</h1>
+                <p>About Us</p>
+                <p>Contact Us</p>
+                <p>Career</p>
+                <p>Affiliate</p>
+            </div>
+            <div class="col-md-3">
+                <h1>Follow us on</h1>
+                <p><i class="fa fa-facebook-official"></i>Facebook</p>
+                <p><i class="fa fa-youtube-play"></i>Instagram</p>
+                <p><i class="fa fa-linkedin"></i>LinkedIn</p>
+                <p><i class="fa fa-twitter"></i>Twitter</p>
+            </div>
+            <div class="col-md-3 footer-image">
+                <h1>Download App</h1>
+                <img src="./assets/app.jpg" width="150">
+            </div>
+        </div>
+        <hr>
+        <p class = "copyright"> Made by <i class="fa fa-heart-o"></i> Beehyv</p>
+    </div>
+</section>
+
+</body>
+</html>

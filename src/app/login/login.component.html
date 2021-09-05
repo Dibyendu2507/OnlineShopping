@@ -1,0 +1,69 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div style="text-align: center">
+    <h1></h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="centered">
+            <form name="form">
+                <fieldset>
+                    <legend class="text-center">Valid information is required to login. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="username"><span class="req">* </span> Username: </label>
+                        <input type="text" class="form-control"  [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Enter your username"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><span class="req">* </span> Password: </label>
+                        <input type="password" class="form-control"  [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Enter your password"/>
+                    </div>
+
+                    <p class="para"><input type="checkbox" id="validity" name="validity" value="duration">
+                    <label for="validity">Keep me logged in for 30 days</label>. <a href="https://www.google.com/gmail/" target="_blank">Forgot Password</a></p>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-success"  (click)="validate()" >Submit</button>
+                    </div>
+                    <h3 class="invalid-feedback" id="invalid" *ngIf="userid == 0">Username or password is invalid.</h3>
+                    <p class="para">Need an account? <a href="\register">Sign up</a></p> 
+                    
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--
+
+<body>
+    
+    <div class="background">
+        <div style="padding: 5px 27px 5px 5px; text-align: right">
+            <select class="form-control">
+                <option>English</option>
+                <option>Hindi</option>
+            </select>
+        </div>
+        <h1 style="font-family:sans-serif">Log in to your account</h1><br>
+        <form id="form">
+            <div class="login">
+                <input type="text"  [(ngModel)]="username" [ngModelOptions]="{standalone: true}" size="35"  id="uname"  placeholder="username"  required><br><br>
+                <input type="password"  [(ngModel)]="password"  [ngModelOptions]="{standalone: true}" size="35"  id="pass"  placeholder="password"  required><br>
+                <p class="para"><input type="checkbox" id="validity" name="validity" value="duration">
+                <label for="validity">Keep me logged in for 30 days</label>. <a href="https://www.google.com/gmail/" target="_blank">Forgot Password</a></p><br>
+                <button class ="button" type="submit" (click)="validate()">Log in</button>
+            </div>
+        </form>
+            <h3 class="login" id="invalid" *ngIf="userid == 0">Username or password is invalid.</h3>
+            <p class="para">Need an account? <a href="https://www.google.com/gmail/" target="_blank">Sign up</a></p> 
+    </div>
+
+</body>
+
+-->
