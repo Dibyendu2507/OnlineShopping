@@ -1,6 +1,6 @@
 # Go to the Branch menu, the source code of frontend Angular application is shared in "frontend_angular_app" branch and the source code of backend Spring Boot application is shared in "backend_spring_boot_app" branch 
 
-This is the source code of an end to end online ecommerce web application deployable on local server. Code contributed by Dibyendu Paul
+This is the source code of an end to end online ecommerce web application deployable on local server.The code is contributed by Dibyendu Paul.
 The app consists of features like - 
 
 1. Home page displaying products
